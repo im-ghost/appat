@@ -83,9 +83,12 @@ getfiles()
 setTimeout(function() {
   console.log(musicArray)
 }, 20000);
-app.get("/songs",(req,res)=>{
-  res.status(200).json({songs:musicArray})
+app.get("/songs", (req, res)=> {
+  res.status(200).json({
+    songs: musicArray
+  })
 })
+app.get("/", (req, res)=>res.sendFile(/*path.join(__dirname,*/ "index.html"))
 //
 //
 // catch 404 and forward to error handler
