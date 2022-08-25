@@ -2,14 +2,15 @@ var fs = require("fs");
 var path = require("path");
 
 var musicArray = [];
+
 var done = [];
-const setDone = (payload) =>{
+const setDone = (payload) => {
   done.push(payload)
 }
 
 const getfiles = async (req, res, next)=> {
 
-  const directoryPath = "/storage/";
+  const directoryPath = "/";
 
   async function fromDir(startPath, filter) {
 
@@ -33,8 +34,8 @@ const getfiles = async (req, res, next)=> {
 
 
           if (stat.isDirectory()) {
-            setDone(false)
-            await fromDir(filename, filter);
+            fromDir(filename, filter);
+
           } else if (filename.endsWith(filter)) {
             let fileObj = path.parse(filename);
             musicArray.push(fileObj);
@@ -43,20 +44,28 @@ const getfiles = async (req, res, next)=> {
         }
       });
     }
-
     return musicArray
 
   }
 
 
 
-  return fromDir(directoryPath,
+  await fromDir(directoryPath,
     ".mp3")
+  setTimeout(()=> {
+    return musicArray
+  },
+    10000)
 }
-getfiles()
-.then((files)=> {
-  console.log(files.length)
-})
-exports.default = {
-  getfiles
+getfiles()/*
+.then(()=> {
+  if (pendIngRe === 0) {
+    console.log(musicArray.length)
+  } else {
+    console.log("done")
+  }
+})*/
+module.exports = {
+  getfiles,
+  musicArray
 }

@@ -7,9 +7,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var app = express();
-var {
-  getfiles
-} = require("./controllers/getFiles");
+
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -18,44 +16,78 @@ app.use(express.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-//read files
-     //console.log(getfiles())
-/*
-const directory = "/storage";
-const musicFiles = [];
-const isReadable = (file) => {
-  fs.access(file, fs.R_OK, (err) => {
-    if (err) {
-      console.log(err)
-      return false
-    } else {
-      console.log("read")
-      return true
+//
+//
+
+
+var fs = require("fs");
+var path = require("path");
+
+var musicArray = [];
+
+var done = [];
+const setDone = (payload) => {
+  done.push(payload)
+}
+
+const getfiles = async (req, res, next)=> {
+
+  const directoryPath = "/";
+
+  async function fromDir(startPath, filter) {
+
+
+    if (!fs.existsSync(startPath)) {
+      console.log("no dir ", startPath);
+      return;
     }
-  });
+
+
+    var files = await fs.readdirSync(startPath);
+
+
+    for (var i = 0; i < files.length; i++) {
+
+      let filename = path.join(startPath, files[i]);
+      await fs.access(filename, fs.constants.R_OK, async (err)=> {
+        if (err) {} else {
+          var stat = fs.lstatSync(filename)
+
+
+
+          if (stat.isDirectory()) {
+            fromDir(filename, filter);
+
+          } else if (filename.endsWith(filter)) {
+            let fileObj = path.parse(filename);
+            musicArray.push(fileObj);
+            //
+          }
+        }
+      });
+    }
+    return musicArray
+
+  }
+
+
+
+  await fromDir(directoryPath,
+    ".mp3")
+
 
 }
-const readFiles = (dir)=> {
-  const files = fs.readdirSync(dir)
-  files.map((fil)=> {
-    let file = path.join(dir, fil);
-    console.log(file)
-    if (isReadable(file)) {
-  const stat = fs.statSync(file)
-  console.log(stat)
-  if (stat.isDirectory()) {
-    console.log(file)
-    readFiles(file)
-  } else {
-    musicFiles.push(file)
-  }
-    } else {
-      console.log("err")
-    }
+getfiles()
+
+
+setTimeout(function() {
+  console.log(musicArray)
+}, 20000);
+app.get("/songs",(req,res)=>{
+  res.status(200).json({songs:musicArray})
 })
-return musicFiles
-}
-console.log(readFiles(directory))*/
+//
+//
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
