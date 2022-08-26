@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script defer src="./javascripts/alphine.js"></script>
+
+
+
+</head>
+<body>
+  <div x-data="allsongs">
+    <button @click="render" id="btn" x-show="false">Render</button>
+    <template x-for="song in songs">
+      <div class="p-3 m-4 rounded" x-data="{
+        id:song.d,
+        sel:'#a'+song.d}">
+        <h1 x-text="song.name"></h1>
+        <div class="p-2">
+          <audio :src="song.src" ref="aud" :id="id" x-effect="console.log(sel)"></audio>
+          <button @click="play(song)">play</button>
+          <button @click="document.querySelector(sel).play()">pladdy</button>
+        </div>
+      </div>
+    </template>
+  </div>
+
+
+  <script src="./javascripts/app.js">
+  </script>
+  <script src="./javascripts/index.js" defer></script>
+  <script src="./javascripts/ts.js" defer></script>
+  <script src="./javascripts/eruda.js"></script>
+  <script>
+    eruda.init();
+  </script>
+
+</body>
+
+</html>

@@ -80,9 +80,6 @@ const getfiles = async (req, res, next)=> {
 getfiles()
 
 
-setTimeout(function() {
-  console.log(musicArray)
-}, 20000);
 app.get("/songs", (req, res)=> {
   res.status(200).json({
     songs: musicArray
