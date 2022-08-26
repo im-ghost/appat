@@ -32,7 +32,8 @@ const setDone = (payload) => {
 
 const getfiles = async (req, res, next)=> {
 
-  const directoryPath = "/";
+  const directoryPath = "/storage/emulated/0/";
+  const directoryPath2 = "/storage/sdcard0/";
 
   async function fromDir(startPath, filter) {
 
@@ -72,8 +73,8 @@ const getfiles = async (req, res, next)=> {
 
 
 
-  await fromDir(directoryPath,
-    ".mp3")
+  await fromDir(directoryPath,".mp3")
+  await fromDir(directoryPath2,".mp3")
 
 
 }
@@ -85,7 +86,7 @@ app.get("/songs", (req, res)=> {
     songs: musicArray
   })
 })
-app.get("/", (req, res)=>res.sendFile(/*path.join(__dirname,*/ "index.html"))
+app.get("/", (req, res)=>res.sendFile(/*path.join(__dirname,*/ "/Templates/index.html"))
 //
 //
 // catch 404 and forward to error handler
