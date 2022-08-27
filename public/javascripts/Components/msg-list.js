@@ -9,10 +9,11 @@ const registerList = () => {
   singleMsg()
   const template = document.createElement("template")
   template.innerHTML = `
-  <style>
-  </style>
+  
+  <link rel="stylesheet" href="/stylesheets/output.css"/>
+  
   <div x-data="{
-name:'woekddddddd'}">
+  name:'wodd'}" class="container overflow-scroll h-64 p-2 w-screen>
   <div id="msgs">
   <chat-msg
   text= 'dr',
@@ -21,7 +22,7 @@ name:'woekddddddd'}">
   ></chat-msg>
   </div>
   <div id="time"></div>
- 
+  <p x-text="name">ff</p>
   </div>
 
   `
@@ -41,12 +42,11 @@ name:'woekddddddd'}">
 
     }
     connectedCallback() {
-      document.addEventListener("alpine:initialized",()=>{
-    Alpine.initTree(this.shadowRoot)
-})
+      document.addEventListener("alpine:init", ()=> {
+        Alpine.initTree(this.shadowRoot)
+      })
     }
-    disconnectedCallback() {
-    }
+    disconnectedCallback() {}
   }
 
 
