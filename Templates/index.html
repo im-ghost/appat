@@ -8,6 +8,8 @@
 
 <link rel="icon" type="image/png" href="favicon.png" />
 <link rel="stylesheet" href="stylesheets/py.css" />
+
+<script defer src="/javascripts/alphine.js"></script>
 <!--
 <script defer src="/javascripts/pyscript.js"></script>
 <py-env>
@@ -17,11 +19,17 @@
 </head>
 
 <body class="container">
+<div x-data="{
+name:'woekddddddd'}">
+<p x-text="name">
+dr
+</p>
+</div>
 <!--
 <py-script src="./todo.py">  </py-script>
 -->
 <main>
-<msgs-list ></msgs-list>
+<msgs-list></msgs-list>
 <ul id="messages"></ul>
 <form id="form" action="">
 <input id="input" autocomplete="off" /><button>Send</button>

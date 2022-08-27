@@ -1,8 +1,13 @@
 //
 //
 import registerList from "./Components/msg-list.js"
-
-registerList();
+document.addEventListener("alphine:init", ()=> {
+  alert("init")
+  setTimeout(function() {
+    registerList();
+  }, 1000);
+})
+  registerList()
 var socket = io();
 
 var messages = document.getElementById('messages');

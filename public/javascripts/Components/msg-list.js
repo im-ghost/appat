@@ -11,7 +11,8 @@ const registerList = () => {
   template.innerHTML = `
   <style>
   </style>
-  <div>
+  <div x-data="{
+name:'woekddddddd'}">
   <div id="msgs">
   <chat-msg
   text= 'dr',
@@ -20,6 +21,7 @@ const registerList = () => {
   ></chat-msg>
   </div>
   <div id="time"></div>
+ 
   </div>
 
   `
@@ -39,10 +41,11 @@ const registerList = () => {
 
     }
     connectedCallback() {
-      this.shadowRoot.querySelector("#r").addEventListener("click", ()=>this.toggle());
+      document.addEventListener("alpine:initialized",()=>{
+    Alpine.initTree(this.shadowRoot)
+})
     }
     disconnectedCallback() {
-      this.shadowRoot.querySelector("#r").removeEventListener()
     }
   }
 

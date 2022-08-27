@@ -26,11 +26,8 @@ const singleMsg = () => {
       this.shadowRoot.querySelector("#time").innerHTML = `${this.getAttribute("time")}`
     }
     connectedCallback() {
-      this.shadowRoot.querySelector("#r").addEventListener("click", ()=>this.toggle());
     }
-    disconnectedCallback() {
-      this.shadowRoot.querySelector("#r").removeEventListener()
-    }
+    disconnectedCallback() {}
   }
 
 
