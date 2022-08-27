@@ -1,13 +1,8 @@
 //
 //
 import registerList from "./Components/msg-list.js"
-document.addEventListener("alphine:init", ()=> {
-  alert("init")
-  setTimeout(function() {
-    registerList();
-  }, 1000);
-})
-  registerList()
+document.addEventListener("alpine:init", ()=> {})
+registerList();
 var socket = io();
 
 var messages = document.getElementById('messages');
@@ -23,9 +18,8 @@ form.addEventListener('submit', function(e) {
 });
 
 socket.on('chat message', function(msg) {
-  var item = document.createElement('li');
-  item.textContent = msg;
-  messages.appendChild(item);
+  var item = `<chat-msg text=${msg} time=${new Date()}></chat-msg>`
+  messages.innerHTML += item;
   window.scrollTo(0, document.body.scrollHeight);
 });
 
