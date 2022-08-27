@@ -8,6 +8,8 @@
 
 <link rel="icon" type="image/png" href="favicon.png" />
 <link rel="stylesheet" href="stylesheets/py.css" />
+<link rel="stylesheet" href="/stylesheets/output.css" />
+<script src="/javascripts/main.js" type="module"></script>
 
 <script defer src="/javascripts/alphine.js"></script>
 <!--
@@ -18,13 +20,7 @@
 </py-env>-->
 </head>
 
-<body class="container">
-<div x-data="{
-name:'woekddddddd'}">
-<p x-text="name">
-dr
-</p>
-</div>
+<body class="container bg-blue-100 p-4 m-2">
 <!--
 <py-script src="./todo.py">  </py-script>
 -->
@@ -40,7 +36,6 @@ dr
 </main>
 
 <script src="/socket.io/socket.io.js"></script>
-<script src="/javascripts/main.js" type="module"></script>
 <script src="/javascripts/eruda.js"></script>
 <script>
 eruda.init();
