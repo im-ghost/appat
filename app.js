@@ -7,6 +7,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var roomsRouter = require('./routes/rooms');
+var chatsRouter = require('./routes/chats');
 
 var app = express();
 
@@ -44,6 +46,8 @@ io.on('connection', (socket) => {
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/chats', chatsRouter);
+app.use('/rooms', roomsRouter);
 /**/
 //
 //
