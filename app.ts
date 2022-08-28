@@ -1,16 +1,17 @@
-var createError = require('http-errors');
-var express = require('express');
-var fs = require("fs");
+const createError = require('http-errors');
+import express,{Request,Response, NextFunction} from "express"
 
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan')
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var roomsRouter = require('./routes/rooms');
-var chatsRouter = require('./routes/chats');
+const fs = require("fs");
 
-var app = express();
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan')
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const roomsRouter = require('./routes/rooms');
+const chatsRouter = require('./routes/chats');
+
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -31,7 +32,7 @@ app.use(express.urlencoded({
 }));
 
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));/*
+app.use(express.static(path.join(__dirname, 'public'))); /*
 app.use(express.static(path.join(__dirname, 'Templates')));*/
 //
 //
@@ -52,12 +53,12 @@ app.use('/rooms', roomsRouter);
 //
 //
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function(req: Request, res:Response, next: NextFunction) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function(err, req: Request, res:Response, next: NextFunction) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err: {};
