@@ -18,6 +18,8 @@
     "morgan": "~1.9.1",
     "socket.io": "^4.5.1",
     "tailwindcss": "^3.1.8",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "sass":"",
+    "pug": "2.0.0-beta11"
   }
 }

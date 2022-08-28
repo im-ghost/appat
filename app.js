@@ -4,9 +4,15 @@ var fs = require("fs");
 
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+var logger = require('morgan')
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
 
 var app = express();
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 
 const http = require('http');
 const server = http.createServer(app);
@@ -21,9 +27,10 @@ app.use(express.json());
 app.use(express.urlencoded({
   extended: false
 }));
+
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'Templates')));
+app.use(express.static(path.join(__dirname, 'public')));/*
+app.use(express.static(path.join(__dirname, 'Templates')));*/
 //
 //
 
@@ -35,8 +42,9 @@ io.on('connection', (socket) => {
   });
 });
 
-app.get("/", (req, res)=>res.sendFile(path.join(__dirname,"Templates/index.html")))
-app.get("/chats", (req, res)=>res.sendFile(path.join(__dirname,"Templates/chats.html")))
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+/**/
 //
 //
 // catch 404 and forward to error handler
