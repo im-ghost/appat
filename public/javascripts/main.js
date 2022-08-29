@@ -1,10 +1,15 @@
 //
 //
 import registerList from "./Components/msg-list.js"
+import xhr from "./xhr.js"
 document.addEventListener("alpine:init", ()=> {})
+
 registerList();
 var socket = io();
-
+const getAllfiles = () => {
+  xhr("Get","/fakedata.json")
+}
+eruda.init();
 var messages = document.getElementById('messages');
 var form = document.getElementById('form');
 var input = document.getElementById('input');
