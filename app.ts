@@ -1,7 +1,16 @@
 const createError = require('http-errors');
-import express,{Request,Response, NextFunction,Application} from "express"
+import express, {
+  Request,
+  Response,
+  NextFunction,
+  Application
+} from "express"
+var {
+  connectDB
+} = require("./config/db");
 
 const fs = require("fs");
+var room = require("./controllers/fake/room");
 
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -19,6 +28,7 @@ app.set('view engine', 'pug');
 
 const http = require('http');
 const server = http.createServer(app);
+//connectDB()
 const {
   Server
 } = require("socket.io");
@@ -53,12 +63,12 @@ app.use('/rooms', roomsRouter);
 //
 //
 // catch 404 and forward to error handler
-app.use(function(req: Request, res:Response, next: NextFunction) {
+app.use(function(req: Request, res: Response, next: NextFunction) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err: any, req: Request, res:Response, next: NextFunction) {
+app.use(function(err: any, req: Request, res: Response, next: NextFunction) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err: {};
