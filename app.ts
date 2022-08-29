@@ -1,5 +1,5 @@
 const createError = require('http-errors');
-import express,{Request,Response, NextFunction} from "express"
+import express,{Request,Response, NextFunction,Application} from "express"
 
 const fs = require("fs");
 
@@ -11,7 +11,7 @@ const usersRouter = require('./routes/users');
 const roomsRouter = require('./routes/rooms');
 const chatsRouter = require('./routes/chats');
 
-const app = express();
+const app: Application = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -38,9 +38,9 @@ app.use(express.static(path.join(__dirname, 'Templates')));*/
 //
 
 
-io.on('connection', (socket) => {
+io.on('connection', (socket: any) => {
   console.log('a user connected');
-  socket.on('chat message', (msg) => {
+  socket.on('chat message', (msg: any) => {
     io.emit('chat message', msg);
   });
 });
@@ -58,7 +58,7 @@ app.use(function(req: Request, res:Response, next: NextFunction) {
 });
 
 // error handler
-app.use(function(err, req: Request, res:Response, next: NextFunction) {
+app.use(function(err: any, req: Request, res:Response, next: NextFunction) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err: {};
