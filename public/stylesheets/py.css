@@ -2,11 +2,6 @@
     display: none
 }
 
-html{
-    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    line-height: 1.5;
-}
-
 .spinner::after {
     content: '';
     box-sizing: border-box;
