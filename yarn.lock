@@ -611,6 +611,11 @@ engine.io@~6.2.0:
     engine.io-parser "~5.0.3"
     ws "~8.2.3"
 
+eruda@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/eruda/-/eruda-2.5.0.tgz#7a2d2209ea390de023a8ce9edcaca403aa16ab47"
+  integrity sha512-ardSJe7AfCPTzaLJVieX0FwzuL56rDDFemnK1ETcZPsrZcUqYAjUb7gpJPgSj9x06PmeGGGFJKrSlZ0F0d4lJQ==
+
 escape-html@~1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/escape-html/-/escape-html-1.0.3.tgz#0258eae4d3d0c0974de1c169188ef0051d1d1988"
