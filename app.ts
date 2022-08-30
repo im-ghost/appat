@@ -46,9 +46,11 @@ app.use(express.static(path.join(__dirname, 'public'))); /*
 app.use(express.static(path.join(__dirname, 'Templates')));*/
 //
 //
-
+app.set("io",io)
 
 io.on('connection', (socket: any) => {
+  app.set("socket", socket);
+
   console.log('a user connected');
   socket.on('chat message', (msg: any) => {
     io.emit('chat message', msg);
