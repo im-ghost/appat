@@ -7,3 +7,13 @@
     outline:none;
   }
 }
+card{
+  border:1px solid #dfdfdf;
+  &__img{
+    border:3px groove #dedede;
+    &--caption{
+      display: flex;
+      justify-content: center;
+    }
+  }
+}
