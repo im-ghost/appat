@@ -1,8 +1,8 @@
 extends layout
 
 block content
- div(class="border")
+ div(class="border" x-data)
    rooms-list
-   button(id="addRoom" class="rouded border-2 shadow") New room
+   button(id="addRoom" @click = "alert('dd')" class="rouded fixed bottom-10 right-10 border-2 shadow") New room
 
 
