@@ -1,0 +1,2 @@
+eruda.init()
+alert(eruda)

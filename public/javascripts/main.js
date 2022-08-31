@@ -4,11 +4,9 @@
 import registerList from "./Components/msg-list.js"
 import Rooms from "./pages/rooms.js"
 document.addEventListener("alpine:init", ()=> {
-  alert("Hi alpine")
   window.Alpine = Alpine
 })
 registerList();
-var roomcalled = false;
 var socket = io();
 (()=> {
   window.socket = socket;
@@ -17,7 +15,6 @@ var socket = io();
 socket.on("allRooms", (rooms)=> {
 
   Rooms(rooms,Alpine)
-  roomcalled = true
 })/*
 var messages = document.getElementById('messages');
 var form = document.getElementById('form');
