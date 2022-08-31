@@ -3,7 +3,8 @@
 import Room from "../Components/room.js"
 
 
-export default function Rooms(rooms,Alpine){
+export default function Rooms(rooms, Alpine) {
+  
   console.log(rooms)
   Room(Alpine);
   const template = document.createElement("template")
@@ -56,11 +57,14 @@ export default function Rooms(rooms,Alpine){
       console.log(template)
     }
     connectedCallback() {
-    
-        Alpine.initTree(this.shadowRoot)
 
-        document.querySelector("#addRoom").addEventListener("click", ()=> {})
-      
+      Alpine.initTree(this.shadowRoot)
+
+      document.querySelector("#addRoom").addEventListener("click", (e)=> {
+        console.log(e)
+        window.location.replace("rooms/addRoom")
+      })
+
     }
     disconnectedCallback() {}
   }
