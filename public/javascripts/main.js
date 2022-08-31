@@ -6,20 +6,25 @@ import Rooms from "./pages/rooms.js"
 document.addEventListener("alpine:init", ()=> {
   window.Alpine = Alpine
 })
-registerList();
-var socket = io();
-(()=> {
-  window.socket = socket;
-  socket.emit("getRooms")
-})()
-socket.on("allRooms", (rooms)=> {
+var factory = {};
+var global = window;
 
-  Rooms(rooms,Alpine)
-})/*
+  registerList();
+  var socket = io();
+
+  window.socket = socket;
+  (()=>{
+  socket.emit("getRooms");
+  console.log("called ")
+  })()
+  socket.on("allRooms", (rooms)=> {
+
+    Rooms(rooms, Alpine)
+  })/*
 var messages = document.getElementById('messages');
 var form = document.getElementById('form');
 var input = document.getElementById('input');
-/*
+  /*
 form.addEventListener('submit', function(e) {
   e.preventDefault();
   if (input.value) {
@@ -35,5 +40,5 @@ socket.on('chat message', function(msg) {
 });
 
 */
-//
-///
+  //
+  ///
