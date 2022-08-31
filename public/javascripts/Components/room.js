@@ -9,7 +9,9 @@ export default function Room(Alpine) {
   <link rel="stylesheet" href="/stylesheets/output.css"/>
 
   <div x-data="room" class="container overflow-scroll h-32  p-2 w-screen">
+  <a id="link">
   <h1 x-text="name">Alpine sha</h1>
+  </a>
   </div>
   `
 
@@ -30,6 +32,7 @@ export default function Room(Alpine) {
       this._id = this.getAttribute("_id")
       this.messages = this.getAttribute("messages")
       this.members = this.getAttribute("members")
+      sel("#link").setAttribute("href",`room/${this._id}`)
     }
     connectedCallback() {
 
