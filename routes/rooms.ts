@@ -8,47 +8,23 @@ import {
   NextFunction
 } from "express"
 const {
-  readFile
+  readFile,
+  addRoom,
+  addroom,
+  room
 } = require("../controllers/fake/room")
+import {
+  ROOM,
+  ROOMS
+} from "../interfaces/ROOM"
 const router = Router();
 
-router.get("/", (req: Request, res: Response, next: NextFunction)=> {
-  let socket = req.app.get("socket")
-  let io = req.app.get("io")
-  if (socket) {
-    console.log("client didn't make a request oo")
-    socket.on("getRooms", async ()=> {
-      readFile()
-      .then((rooms: any)=> {
-        io.emit("allRooms", rooms.rooms)
-      })
-      console.log("all rooms if")
-    })
-  } else {
-    console.log("else")
-    io.on("connection", async(socket: any)=> {
-      console.log("h")
+router.get("/", room)
 
-      socket.on("getRooms", async ()=> {
-        console.log("trying to get all rooma")
-
-        readFile()
-        .then((rooms: any)=> {
-          io.emit("allRooms", rooms.rooms)
-        })
-      })
-    })
-  }
-  res.render("rooms", {
-    title: "All rooms"
-  })
-})
-
-
-router.get("/:id", (req: Request, res: Response, next: NextFunction)=> {
+router.get("/room/:id", (req: Request, res: Response, next: NextFunction)=> {
   res.render("room", {
     title: `Room`
   })
 })
-
+router.get("/addRoom", addroom)
 module.exports = router
