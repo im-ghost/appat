@@ -6,7 +6,7 @@
     "start": "node dist/app",
     "dev": "nodemon app.ts",
     "build": "tsc -p .",
-    "css": "npx tailwind -i ./public/stylesheets/style.css -o ./public/stylesheets/output --watch",
+    "css": "npx tailwind -i ./public/stylesheets/style.css -o ./public/stylesheets/output.css --watch",
     "build-image": "docker build . -t Peculiar-codes/appat",
     "run:image": "docker run -p 49160:5000 -d Peculiar-codes/appat",
     "test:docker": "docker ps",
