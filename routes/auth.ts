@@ -15,10 +15,10 @@ router.get('/google', passport.authenticate('google', {
 router.get(
   '/google/callback',
   passport.authenticate('google', {
-    failureRedirect: '/'
+    failureRedirect: '/login'
   }),
   (req: Request, res: Response) => {
-    res.redirect('/index')
+    res.redirect('/')
   }
 )
 
@@ -33,10 +33,10 @@ router.get('/twitter', passport.authenticate('twitter', {
 router.get(
   '/twitter/callback',
   passport.authenticate('twitter', {
-    failureRedirect: '/'
+    failureRedirect: '/login'
   }),
   (req: Request, res: Response) => {
-    res.redirect('/index')
+    res.redirect('/')
   }
 )
 /*
