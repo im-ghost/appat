@@ -10,6 +10,10 @@ const userModel:Schema = new Schema({
   },
   messages:{
     type:Array
+  },
+  admin:{
+    type: Object,
+    required:true
   }
 })
 
