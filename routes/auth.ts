@@ -17,7 +17,7 @@ router.get(
   passport.authenticate('google', {
     failureRedirect: '/'
   }),
-  (req, res) => {
+  (req: Request, res: Response) => {
     res.redirect('/index')
   }
 )
@@ -35,7 +35,7 @@ router.get(
   passport.authenticate('twitter', {
     failureRedirect: '/'
   }),
-  (req, res) => {
+  (req: Request, res: Response) => {
     res.redirect('/index')
   }
 )
@@ -55,7 +55,7 @@ router.get(
 )*/
 // @desc    Logout user
 // @route   /auth/logout
-router.get('/logout', (req, res, next) => {
+router.get('/logout', (req: any, res: Response, next) => {
   req.logout((error) => {
     if (error) {
       return next(error)}

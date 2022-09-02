@@ -13,6 +13,8 @@
     "call:docker": "curl -i localhost:49160"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-mongo": "^4.6.0",
     "cookie-parser": "~1.4.4",
     "cookie-session": "^2.0.0",
     "debug": "~2.6.9",
@@ -21,12 +23,15 @@
     "express": "~4.16.1",
     "express-session": "^1.17.3",
     "http-errors": "~1.6.3",
+    "jwt": "^0.2.0",
+    "method-override": "^3.0.0",
     "mongoose": "^6.5.3",
     "morgan": "~1.9.1",
     "passport": "^0.6.0",
     "passport-google-oauth2": "^0.2.0",
     "passport-local": "^1.0.0",
-    "pug": "2.0.0-beta11",
+    "passport-twitter-oauth2": "^2.1.1",
+    "pug": "^2.0.4",
     "socket.io": "^4.5.1",
     "tailwindcss": "^3.1.8",
     "ts-node": "^10.9.1"

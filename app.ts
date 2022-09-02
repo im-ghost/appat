@@ -59,7 +59,7 @@ app.use(express.urlencoded({
 
 // Method override
 app.use(
-  methodOverride(function (req, res) {
+  methodOverride(function (req: Request, res: Response) {
     if (req.body && typeof req.body === 'object' && '_method' in req.body) {
       // look in urlencoded POST bodies and delete it
       let method = req.body._method
@@ -104,7 +104,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 // Set global var
-app.use(function (req, res, next) {
+app.use(function (req:any, res: Response, next :NextFunction) {
   res.locals.user = req.user || null
   next()
 })

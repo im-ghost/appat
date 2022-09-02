@@ -1,40 +1,44 @@
-const LocalStrategy = require('passport-local').Strategy;
-const bcrypt = require('bcryptjs');
-
-// Load User model
-const User = require('../models/User');
-
-module.exports = function(passport) {
+module.exports = function(passport: any) {
+  const GoogleStrategy = require('passport-google-oauth2').Strategy
+  const User = require('../models/User')
+  const LocalStrategy = require('passport-local').Strategy;
+  const bcrypt = require('bcryptjs');
   passport.use(
-    new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
+    new LocalStrategy({
+      usernameField: 'email'
+    }, (email: any, password: any, done: any) => {
       // Match user
-      User.findOne({
+      const user: any = User.findOne({
         email: email
-      }).then(user => {
-        if (!user) {
-          return done(null, false, { message: 'That email is not registered' });
-        }
-
-        // Match password
-        bcrypt.compare(password, user.password, (err, isMatch) => {
-          if (err) throw err;
-          if (isMatch) {
-            return done(null, user);
-          } else {
-            return done(null, false, { message: 'Password incorrect' });
-          }
+      })
+      if (!user) {
+        return done(null, false, {
+          message: 'That email is not registered'
         });
-      });
-    })
-  );
+      }
 
-  passport.serializeUser(function(user, done) {
+      // Match password
+      bcrypt.compare(password, user.password, (err, isMatch) => {
+        if (err) throw err;
+        if (isMatch) {
+          return done(null, user);
+        } else {
+          return done(null, false, {
+            message: 'Password incorrect'
+          });
+        }
+      });
+    }))
+
+  passport.serializeUser(function(user: any, done: any) {
     done(null, user.id);
   });
 
-  passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
-      done(err, user);
+  passport.deserializeUser(function(id: any, done: any) {
+    User.findById(id, function(err: any,
+      user: any) {
+      done(err,
+        user);
     });
   });
 };

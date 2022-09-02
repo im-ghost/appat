@@ -1,5 +1,5 @@
 var express = require('express');
-
+const router = express.Router()
 import {
   Request,
   Response,
@@ -14,21 +14,21 @@ const passport = require('passport');
 // Load User model
 const User = require('../models/User');
 const {
-  forwardAuthenticated
+  ensureAuth
 } = require('../Middlewares/auth');
 
 // Login Page
-router.get('/login', forwardAuthenticated, (req: Request, res: Response) => res.render('login'));
+router.get('/login', ensureAuth, (req: Request, res: Response) => res.render('login'));
 
 // Register Page
-router.get('/register', forwardAuthenticated, (req: Request, res: Response) => res.render('register'));
+router.get('/register', ensureAuth, (req: Request, res: Response) => res.render('register'));
 
 // Register
-router.post('/register', (req: Request, res: Response) => {
+router.post('/register', (req: any, res: Response) => {
   const {
     name, email, password, password2
   } = req.body;
-  let errors = [];
+  let errors: any[] = [];
 
   if (!name || !email || !password || !password2) {
     errors.push({
@@ -85,7 +85,7 @@ router.post('/register', (req: Request, res: Response) => {
             newUser
             .save()
             .then(user => {
-              req.flash(
+              req?.flash(
                 'success_msg',
                 'You are now registered and can log in'
               );
@@ -105,11 +105,11 @@ router.post('/login', (req: Request, res: Response, next) => {
     successRedirect: '/index',
     failureRedirect: '/users/login',
     failureFlash: true
-  })(req: Request res, next);
+  })(req, res, next);
 });
 
 // Logout
-router.get('/logout', (req: Request res: Response) => {
+router.get('/logout', (req: any, res: Response) => {
   req.logout();
   req.flash('success_msg', 'You are logged out');
   res.redirect('/users/login');

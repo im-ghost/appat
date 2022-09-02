@@ -5,13 +5,10 @@ import {
 } from 'mongoose';
 import {
   USER
-} from '@interfaces/USER';
+} from '../interfaces/USER';
 
 const userModel: Schema = new Schema({
-  
-  name: {
-    type: String
-  },
+
   displayName: {
     type: String
   },
@@ -35,4 +32,4 @@ const userModel: Schema = new Schema({
   }
 })
 
-module.exports = model <USER & Document> ("User", userModel)
+module.exports = model < USER & Document > ("User", userModel)

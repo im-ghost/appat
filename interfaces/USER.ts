@@ -3,9 +3,13 @@
 import ROOMS from "./ROOM"
 export interface USER {
   _id: any,
-  name: string,
+  displayName: string,
+  firstName: string,
+  lastName: string,
+  image:string,
   rooms: ROOMS,
-  email: string
+  email: string,
+  googleId?:any,
 }
 
 export type USERS = USER[]
