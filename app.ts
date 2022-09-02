@@ -35,9 +35,6 @@ const authRouter = require('./routes/auth');
 
 const app: Application = express();
 
-app.use(passport.initialize());
-app.use(passport.session());
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -56,7 +53,7 @@ app.use(express.json());
 app.use(express.urlencoded({
   extended: false
 }));
-
+/*
 // Method override
 app.use(
   methodOverride(function (req: Request, res: Response) {
@@ -68,7 +65,7 @@ app.use(
     }
   })
 )
-
+*/
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public'))); /*
 app.use(express.static(path.join(__dirname, 'Templates')));*/
@@ -104,7 +101,7 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 // Set global var
-app.use(function (req:any, res: Response, next :NextFunction) {
+app.use(function (req: any, res: Response, next: NextFunction) {
   res.locals.user = req.user || null
   next()
 })
@@ -130,7 +127,7 @@ app.use(function(err: any, req: Request, res: Response, next: NextFunction) {
 
   // render the error page
   res.status(err.status || 500);
-  res.send({
+  res.render("error", {
     status: err.status,
     err: err
   });
