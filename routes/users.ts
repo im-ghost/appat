@@ -14,23 +14,35 @@ const passport = require('passport');
 // Load User model
 const User = require('../models/User');
 const {
-  ensureAuth
+  ensureAuth,
+  ensureGuest
 } = require('../Middlewares/auth');
 
 // Login Page
-router.get('/login', ensureAuth, (req: Request, res: Response) => res.render('login'));
+router.get('/login', ensureGuest, (req: Request, res: Response) => res.render('login',{
+  title:"login",
+  email:"",
+  password:""
+}));
 
 // Register Page
-router.get('/register', ensureAuth, (req: Request, res: Response) => res.render('register'));
-
+router.get('/register', ensureGuest, (req: Request, res: Response) => res.render('register',{
+  title:"Register",
+  email:"",
+  password:"",
+  password2:"",
+  displayName:"",
+  firstName:"",
+  lastName:""
+}))
 // Register
 router.post('/register', (req: any, res: Response) => {
   const {
-    name, email, password, password2
+   firstName,lastName,displayName, email, password, password2
   } = req.body;
   let errors: any[] = [];
 
-  if (!name || !email || !password || !password2) {
+  if (!firstName || !email || !password || !password2 ||  lastName || displayName ) {
     errors.push({
       msg: 'Please enter all fields'
     });
@@ -50,11 +62,15 @@ router.post('/register', (req: any, res: Response) => {
 
   if (errors.length > 0) {
     res.render('register', {
+      title:"Register",
       errors,
-      name,
+      firstName,
+      lastName,
+      displayName,
       email,
       password,
-      password2
+      password2,
+      
     });
   } else {
     User.findOne({
@@ -65,17 +81,23 @@ router.post('/register', (req: any, res: Response) => {
           msg: 'Email already exists'
         });
         res.render('register', {
-          errors,
-          name,
-          email,
-          password,
-          password2
+          title:"Register",
+      errors,
+      firstName,
+      lastName,
+      displayName,
+      email,
+      password,
+      password2,
+      
         });
       } else {
         const newUser = new User({
-          name,
-          email,
-          password
+      firstName,
+      lastName,
+      displayName,
+      email,
+      password
         });
 
         bcrypt.genSalt(10, (err, salt) => {
@@ -102,7 +124,7 @@ router.post('/register', (req: any, res: Response) => {
 // Login
 router.post('/login', (req: Request, res: Response, next) => {
   passport.authenticate('local', {
-    successRedirect: '/index',
+    successRedirect: '/',
     failureRedirect: '/users/login',
     failureFlash: true
   })(req, res, next);
