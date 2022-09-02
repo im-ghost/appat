@@ -1,0 +1,14 @@
+extends layout
+
+block content
+ div(class="container rounded border")
+  form(action="/users/login")
+   
+   div(class="border rounded-xl flex")
+    input(name="email" class="w-full border-0 outline-0" value=email)
+    
+   div(class="border rounded-xl flex")
+    input(name="password" value=password class="w-full border-0 outline-0")
+   button(type="submit") submit
+  a(href="/auth/google") google
+  a(href="/auth/twitter") twitter
