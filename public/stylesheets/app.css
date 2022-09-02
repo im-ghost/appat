@@ -1,0 +1,37 @@
+.input {
+  border: 3px solid black;
+  height: 10vh;
+  width: 50vw;
+}
+.input input {
+  border: none;
+  outline: none;
+}
+
+card {
+  border: 1px solid #dfdfdf;
+}
+card__img {
+  border: 3px groove #dedede;
+}
+card__img--caption {
+  display: flex;
+  justify-content: center;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100vw;
+  padding: 0.5rem;
+}
+.navbar__item {
+  padding: 0.5rem;
+  margin: 0.25rem auto;
+}
+.navbar__item--link {
+  text-decoration: none;
+  width: 74%;
+}
+
+/*# sourceMappingURL=app.css.map */
