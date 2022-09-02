@@ -6,7 +6,8 @@ export interface ROOM {
   _id: any,
   name: string,
   members: USERS,
-  messages: MSGS
+  messages: MSGS,
+  admin:USER
 }
 
 export type ROOMS = ROOM[]
