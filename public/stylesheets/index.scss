@@ -1,3 +1,13 @@
+$text-colors:(
+  "dark":#aaa,
+  "light":#ddd,
+  "happy":#eee,
+  "bright":#ada,
+  "cool":#aca
+);
+
+
+
 .input {
   border:3px solid black;
   height:10vh;
@@ -17,17 +27,25 @@ card {
     }
   }
 }
-.navbar {
+.navbarOut {
   display:flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  padding: 0.5rem;
+  margin-bottom: 1em;
+  border: 1px groove #a59ccb15;
   width:100vw;
-  padding:0.5rem;
-  &__item {
+  .navbar {
+    display:flex;
+    justify-content: space-evenly;
+    width:90vw;
     padding:0.5rem;
-    margin:0.25rem auto;
-    &--link {
-      text-decoration: none;
-      width:74%;
+    &__item {
+      padding:0.5rem;
+      margin:0.25rem auto;
+      &--link {
+        text-decoration: none;
+        width:74%;
+      }
     }
   }
 }
