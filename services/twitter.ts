@@ -1,16 +1,15 @@
-const TwitterStrategy = require('passport-twitter-oauth2').Strategy
+const TwitterStrategy = require('passport-twitter')
 // Load User model
 
 module.exports = function (passport: any) {
-  const GoogleStrategy = require('passport-google-oauth2').Strategy
   const User = require('../models/User')
   const LocalStrategy = require('passport-local').Strategy;
   const bcrypt = require('bcryptjs');
   passport.use(
     new TwitterStrategy(
       {
-        clientID: process.env.TWITTER_ID,
-        clientSecret: process.env.TWITTER_SECRET,
+        consumerKey: process.env.TWITTER_ID,
+        consumerSecret: process.env.TWITTER_SECRET,
         callbackURL: '/auth/twitter/callback',
       },
       async (accessToken: any, refreshToken: any, profile: any, done: any) => {
