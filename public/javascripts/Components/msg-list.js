@@ -11,6 +11,7 @@ const registerList = () => {
   template.innerHTML = `
   
   <link rel="stylesheet" href="/stylesheets/output.css"/>
+  <link rel="stylesheet" href="/stylesheets/app.css"/>
   
   <div x-data="{
   name:'wodd'}" class="container overflow-scroll h-64 p-2 w-screen>
