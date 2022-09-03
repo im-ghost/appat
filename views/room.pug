@@ -1,4 +1,26 @@
 extends layout
 
 block content
-  msgs-list
+  div.p-2#main.h-screen.fixed(x-data="roompage")
+   a(href="/rooms")
+   div.border.p-2.flex.text.center.shadow-xl.h-[15vh]
+    div(@click="toggle")
+     h1 = room.name
+    div.p-2.m-2.h-[75vh](x-if="main")
+     rooms-msg(messages=room.messages)
+     input(type="hidden" value=user)
+    div.input
+     input(name="message" id="message" placeholder="send new message ")
+     button.p-2.rounded.shadow#send(pys-onClick="send_message") send
+   div.m-2.p-4#des(x-else)
+    h1= room.name
+    h3 Members
+     each member in room.members
+      if room.admin === member 
+       div.p-2
+        h4 = member.name 
+        p = Admin 
+     else
+      div.p-2
+       h1 = member.name
+  script(src="/javascripts/pages/room.js")
