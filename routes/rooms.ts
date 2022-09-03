@@ -11,14 +11,22 @@ import {
   ROOM,
   ROOMS
 } from "../interfaces/ROOM"
+import {
+  addRoom,
+  singleRoom
+} from "../controllers/room"
 const router = Router();
 
-router.get("/", (req: Request,res: Response)=>res.render("rooms"))
+router.get("/", (req: Request, res: Response)=>res.render("rooms"))
 
-router.get("/room/:id", (req: Request, res: Response, next: NextFunction)=> {
-  res.render("room", {
-    title: `Room`
-  })
-})
-router.get("/addRoom", (req: Request,res:Response)=>res.render("addRoom"))
+router.get("/room/:id", singleRoom)
+router.get("/addRoom",addRoom)
 module.exports = router
+
+//
+//*
+
+
+
+
+/**/
