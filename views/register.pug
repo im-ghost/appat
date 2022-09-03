@@ -2,19 +2,19 @@ extends layout
 
 block content
  div(class="container rounded border")
-  form(action="/users/register")
+  form(method="POST" action="/users/register")
   
    div(class="border rounded-xl flex")
-    input(name="firstName" value=firstName class="w-full border-0 outline-0")
+    input(name="firstName" value=firstName class="w-full border-0 outline-0" placeholder="firstName")
+    
+   div(class="border rounded-xl placehold")
+    input(name="lastName" value=lastName placeholder="lastName" class="w-full border-0 outline-0")
     
    div(class="border rounded-xl flex")
-    input(name="lastName" value=lastName class="w-full border-0 outline-0")
+    input(name="displayName" value=displayName class="w-full border-0 outline-0" placeholder="displayName")
     
    div(class="border rounded-xl flex")
-    input(name="displayName" value=displayName class="w-full border-0 outline-0")
-    
-   div(class="border rounded-xl flex")
-    input(name="email" value=email class="w-full border-0 outline-0")
+    input(name="email" value=email class="w-full border-0 outline-0" you placeholder="email")
     
    div(class="border rounded-xl flex")
     input(name="password" value=password class="w-full border-0 outline-0")
@@ -24,6 +24,6 @@ block content
     
    button(type="submit") submit
    
-   div.container,rounded,border,p-4
+   div.container.rounded.border.p-4
     a(href="/auth/google") google
     a(href="/auth/twitter") twitter
