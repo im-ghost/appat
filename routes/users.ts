@@ -19,30 +19,30 @@ const {
 } = require('../Middlewares/auth');
 
 // Login Page
-router.get('/login', ensureGuest, (req: Request, res: Response) => res.render('login',{
-  title:"login",
-  email:"",
-  password:""
+router.get('/login', ensureGuest, (req: Request, res: Response) => res.render('login', {
+  title: "login",
+  email: "",
+  password: ""
 }));
 
 // Register Page
-router.get('/register', ensureGuest, (req: Request, res: Response) => res.render('register',{
-  title:"Register",
-  email:"",
-  password:"",
-  password2:"",
-  displayName:"",
-  firstName:"",
-  lastName:""
+router.get('/register', ensureGuest, (req: Request, res: Response) => res.render('register', {
+  title: "Register",
+  email: "",
+  password: "",
+  password2: "",
+  displayName: "",
+  firstName: "",
+  lastName: ""
 }))
 // Register
 router.post('/register', (req: any, res: Response) => {
   const {
-   firstName,lastName,displayName, email, password, password2
+    firstName, lastName, displayName, email, password, password2
   } = req.body;
   let errors: any[] = [];
 
-  if (!firstName || !email || !password || !password2 ||  lastName || displayName ) {
+  if (!firstName || !email || !password || !password2 || !lastName || !displayName) {
     errors.push({
       msg: 'Please enter all fields'
     });
@@ -61,16 +61,17 @@ router.post('/register', (req: any, res: Response) => {
   }
 
   if (errors.length > 0) {
+    console.log(errors)
     res.render('register', {
-      title:"Register",
-      errors,
+      title: "Register",
+      errors: errors,
       firstName,
       lastName,
       displayName,
       email,
       password,
       password2,
-      
+
     });
   } else {
     User.findOne({
@@ -80,42 +81,32 @@ router.post('/register', (req: any, res: Response) => {
         errors.push({
           msg: 'Email already exists'
         });
-        res.render('register', {
-          title:"Register",
-      errors,
-      firstName,
-      lastName,
-      displayName,
-      email,
-      password,
-      password2,
-      
-        });
+        console.log("errors")
+        console.log(user)
+        res.redirect("/")
       } else {
         const newUser = new User({
-      firstName,
-      lastName,
-      displayName,
-      email,
-      password
+          firstName,
+          lastName,
+          displayName,
+          email,
+          password
         });
-
-        bcrypt.genSalt(10, (err, salt) => {
-          bcrypt.hash(newUser.password, salt, (err, hash) => {
-            if (err) throw err;
-            newUser.password = hash;
-            newUser
-            .save()
-            .then(user => {
-              req?.flash(
-                'success_msg',
-                'You are now registered and can log in'
-              );
-              res.redirect('/users/login');
-            })
-            .catch(err => console.log(err));
-          });
-        });
+        /*
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+          if (err) throw err;
+          newUser.password = hash;*/
+        newUser
+        .save()
+        .then(user => {
+          /* req?.flash(
+            'success_msg',
+            'You are now registered and can log in'
+          );*/
+          res.redirect('/');
+        })
+        .catch(err => console.log(err));
       }
     });
   }
@@ -123,17 +114,19 @@ router.post('/register', (req: any, res: Response) => {
 
 // Login
 router.post('/login', (req: Request, res: Response, next) => {
-  passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/users/login',
-    failureFlash: true
-  })(req, res, next);
+  passport.authenticate('local',
+    {
+      successRedirect: '/',
+      failureRedirect: '/users/login',
+      failureFlash: true
+    })(req,
+    res,
+    next);
 });
 
 // Logout
 router.get('/logout', (req: any, res: Response) => {
   req.logout();
-  req.flash('success_msg', 'You are logged out');
   res.redirect('/users/login');
 });
 
