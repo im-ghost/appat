@@ -1,5 +1,5 @@
 import { model, Schema, Document } from 'mongoose';
-import { ROOM } from '@interfaces/ROOM';
+import { ROOM } from '../interfaces/ROOM';
 
 const userModel:Schema = new Schema({
   name: {
