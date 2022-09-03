@@ -484,16 +484,6 @@
     "cookie" "0.4.1"
     "cookie-signature" "1.0.6"
 
-"cookie-session@^2.0.0":
-  "integrity" "sha512-hKvgoThbw00zQOleSlUr2qpvuNweoqBtxrmx0UFosx6AGi9lYtLoA+RbsvknrEX8Pr6MDbdWAb2j6SnMn+lPsg=="
-  "resolved" "https://registry.npmjs.org/cookie-session/-/cookie-session-2.0.0.tgz"
-  "version" "2.0.0"
-  dependencies:
-    "cookies" "0.8.0"
-    "debug" "3.2.7"
-    "on-headers" "~1.0.2"
-    "safe-buffer" "5.2.1"
-
 "cookie-signature@1.0.6":
   "integrity" "sha512-QADzlaHc8icV8I7vbaJXJwod9HWYp8uCqf1xa4OfNu1T7JVxQIrUgOWtHdNDtPiywmFbiS12VjotIXLrKM3orQ=="
   "resolved" "https://registry.npmjs.org/cookie-signature/-/cookie-signature-1.0.6.tgz"
@@ -513,14 +503,6 @@
   "integrity" "sha512-ZwrFkGJxUR3EIoXtO+yVE69Eb7KlixbaeAWfBQB9vVsNn/o+Yw69gBWSSDK825hQNdN+wF8zELf3dFNl/kxkUA=="
   "resolved" "https://registry.npmjs.org/cookie/-/cookie-0.4.1.tgz"
   "version" "0.4.1"
-
-"cookies@0.8.0":
-  "integrity" "sha512-8aPsApQfebXnuI+537McwYsDtjVxGm8gTIzQI3FDW6t5t/DAhERxtnbEPN/8RX+uZthoz4eCOgloXaE5cYyNow=="
-  "resolved" "https://registry.npmjs.org/cookies/-/cookies-0.8.0.tgz"
-  "version" "0.8.0"
-  dependencies:
-    "depd" "~2.0.0"
-    "keygrip" "~1.1.0"
 
 "core-js@^2.4.0":
   "integrity" "sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ=="
@@ -579,13 +561,6 @@
   "version" "3.1.0"
   dependencies:
     "ms" "2.0.0"
-
-"debug@3.2.7":
-  "integrity" "sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ=="
-  "resolved" "https://registry.npmjs.org/debug/-/debug-3.2.7.tgz"
-  "version" "3.2.7"
-  dependencies:
-    "ms" "^2.1.1"
 
 "debug@4.x":
   "integrity" "sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ=="
@@ -978,13 +953,6 @@
   "resolved" "https://registry.npmjs.org/kareem/-/kareem-2.4.1.tgz"
   "version" "2.4.1"
 
-"keygrip@~1.1.0":
-  "integrity" "sha512-iYSchDJ+liQ8iwbSI2QqsQOvqv58eJCEanyJPJi+Khyu8smkcKSFUCbPwzFcL7YVtZ6eONjqRX/38caJ7QjRAQ=="
-  "resolved" "https://registry.npmjs.org/keygrip/-/keygrip-1.1.0.tgz"
-  "version" "1.1.0"
-  dependencies:
-    "tsscmp" "1.0.6"
-
 "kind-of@^3.0.2":
   "integrity" "sha512-NOW9QQXMoZGg/oqnVNoNTTIFEIid1627WCffUBJEdMxYApq7mNE7CpzucIPc+ZQg25Phej7IJSmX3hO+oblOtQ=="
   "resolved" "https://registry.npmjs.org/kind-of/-/kind-of-3.2.2.tgz"
@@ -1150,11 +1118,6 @@
   dependencies:
     "debug" "4.x"
 
-"ms@^2.1.1":
-  "integrity" "sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA=="
-  "resolved" "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz"
-  "version" "2.1.3"
-
 "ms@2.0.0":
   "integrity" "sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A=="
   "resolved" "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz"
@@ -1234,6 +1197,15 @@
   dependencies:
     "passport-strategy" "1.x.x"
 
+"passport-oauth1@1.x.x":
+  "integrity" "sha512-Sv2YWodC6jN12M/OXwmR4BIXeeIHjjbwYTQw4kS6tHK4zYzSEpxBgSJJnknBjICA5cj0ju3FSnG1XmHgIhYnLg=="
+  "resolved" "https://registry.npmjs.org/passport-oauth1/-/passport-oauth1-1.2.0.tgz"
+  "version" "1.2.0"
+  dependencies:
+    "oauth" "0.9.x"
+    "passport-strategy" "1.x.x"
+    "utils-merge" "1.x.x"
+
 "passport-oauth2@^1.1.2", "passport-oauth2@1.x.x":
   "integrity" "sha512-ZbV43Hq9d/SBSYQ22GOiglFsjsD1YY/qdiptA+8ej+9C1dL1TVB+mBE5kDH/D4AJo50+2i8f4bx0vg4/yDDZCQ=="
   "resolved" "https://registry.npmjs.org/passport-oauth2/-/passport-oauth2-1.6.1.tgz"
@@ -1256,6 +1228,14 @@
   "version" "2.1.1"
   dependencies:
     "passport-oauth2" "1.x.x"
+    "xtraverse" "0.1.x"
+
+"passport-twitter@^1.0.4":
+  "integrity" "sha512-qvdauqCqCJJci82mJ9hZZQ6nAv7aSHV31svL8+9H7mRlDdXCdfU6AARQrmmJu3DRmv9fvIebM7zzxR7mVufN3A=="
+  "resolved" "https://registry.npmjs.org/passport-twitter/-/passport-twitter-1.0.4.tgz"
+  "version" "1.0.4"
+  dependencies:
+    "passport-oauth1" "1.x.x"
     "xtraverse" "0.1.x"
 
 "passport@^0.6.0":
@@ -1778,11 +1758,6 @@
     "make-error" "^1.1.1"
     "v8-compile-cache-lib" "^3.0.1"
     "yn" "3.1.1"
-
-"tsscmp@1.0.6":
-  "integrity" "sha512-LxhtAkPDTkVCMQjt2h6eBVY28KCjikZqZfMcC15YBeNjkgUpdCfBu5HoiOTDu86v6smE8yOjyEktJ8hlbANHQA=="
-  "resolved" "https://registry.npmjs.org/tsscmp/-/tsscmp-1.0.6.tgz"
-  "version" "1.0.6"
 
 "type-is@~1.6.16":
   "integrity" "sha512-TkRKr9sUTxEH8MdfuCSP7VizJyzRNMjj2J2do2Jr3Kym598JVdEksuzPQCnlFPW4ky9Q+iA+ma9BGm06XQBy8g=="
