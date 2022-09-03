@@ -19,17 +19,25 @@ card__img--caption {
   justify-content: center;
 }
 
-.navbar {
+.navbarOut {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+  margin-bottom: 1em;
+  border: 1px groove rgba(165, 156, 203, 0.0823529412);
+  width: 100vw;
+}
+.navbarOut .navbar {
   display: flex;
   justify-content: space-evenly;
-  width: 100vw;
+  width: 90vw;
   padding: 0.5rem;
 }
-.navbar__item {
+.navbarOut .navbar__item {
   padding: 0.5rem;
   margin: 0.25rem auto;
 }
-.navbar__item--link {
+.navbarOut .navbar__item--link {
   text-decoration: none;
   width: 74%;
 }
