@@ -5,6 +5,11 @@ import express, {
   NextFunction,
   Application
 } from "express"
+const {
+  ensureAuth,
+  ensureGuest
+} = require('./Middlewares/auth');
+
 var {
   connectDB
 } = require("./config/db");
@@ -74,14 +79,8 @@ app.use(express.static(path.join(__dirname, 'Templates')));*/
 app.set("io", io)
 
 io.on('connection', (socket: any) => {
-  app.set("socket",
-    socket);
-
   console.log('a user connected');
-  socket.on('chat message',
-    (msg: any) => {
-      io.emit('chat message', msg);
-    });
+  require("./controllers/socket")
 });
 
 // Sessions
@@ -106,14 +105,16 @@ app.use(function (req: any, res: Response, next: NextFunction) {
   next()
 })
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/chats', chatsRouter);
-app.use('/rooms', roomsRouter);
+app.use('/', ensureAuth, indexRouter);
+app.use('/users', ensureAuth, usersRouter);
+app.use('/chats', ensureAuth, chatsRouter);
+app.use('/rooms', ensureAuth, roomsRouter);
 app.use('/auth', authRouter);
 /**/
 //
 //
+
+app.get("/favicon.png", (req: Request, res: Response)=>res.sendFile(path.join(__dirname, "/images/favecon.png")))
 // catch 404 and forward to error handler
 app.use(function(req: Request, res: Response, next: NextFunction) {
   next(createError(404));
