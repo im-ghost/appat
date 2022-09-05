@@ -105,10 +105,10 @@ app.use(function (req: any, res: Response, next: NextFunction) {
   next()
 })
 
-app.use('/', ensureAuth, indexRouter);
-app.use('/users', ensureAuth, usersRouter);
-app.use('/chats', ensureAuth, chatsRouter);
-app.use('/rooms', ensureAuth, roomsRouter);
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
+app.use('/chats', chatsRouter);
+app.use('/rooms', roomsRouter);
 app.use('/auth', authRouter);
 /**/
 //
