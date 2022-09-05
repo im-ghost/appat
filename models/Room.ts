@@ -12,8 +12,7 @@ const userModel:Schema = new Schema({
     type:Array
   },
   admin:{
-    type: Object,
-    required:true
+    type: Object
   }
 })
 
