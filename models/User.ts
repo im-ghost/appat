@@ -29,6 +29,9 @@ const userModel: Schema = new Schema({
   },
   rooms: {
     type: Array
+  },
+  password: {
+    type: String, required: true
   }
 })
 
