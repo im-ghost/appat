@@ -8,10 +8,11 @@ export default function Room(Alpine) {
 
   <link rel="stylesheet" href="/stylesheets/output.css"/>
 
-  <div x-data="room" class="container overflow-scroll h-32  p-2 w-screen">
+  <div x-data="room" class="container overflow-scroll h-32  p-2 w-screen rounded shadow">
   <a id="link">
   <h1 x-text="name">Alpine sha</h1>
   </a>
+  <p x-text="lastMess"></p>
   </div>
   `
 
@@ -44,7 +45,8 @@ export default function Room(Alpine) {
         name: this.name,
         members: this.members,
         messages: this.messages,
-        _id: this._id
+        _id: this._id,
+        lastMess:this.messages[this.messages.length-1]
       }))
       Alpine.initTree(this.shadowRoot)
 
