@@ -4,7 +4,7 @@ import Room from "../Components/room.js"
 
 
 export default function Rooms(rooms, Alpine) {
-  
+
   console.log(rooms)
   Room(Alpine);
   const template = document.createElement("template")
@@ -12,8 +12,7 @@ export default function Rooms(rooms, Alpine) {
 
   <link rel="stylesheet" href="/stylesheets/output.css"/>
 
-  <div x-data="{
-  name:'wodd'}" class="container overflow-scroll h-64 p-2 w-screen">
+  <div x-data="" class="container overflow-scroll h-64 p-2 w-screen">
   <div id="list"></div>
   </div>
   `
@@ -34,12 +33,14 @@ export default function Rooms(rooms, Alpine) {
           name,
           _id,
           messages,
-          members
+          members,
+          admin,
         } = room
         drd.setAttribute("_id", _id)
         drd.setAttribute("name", name)
         drd.setAttribute("messages", messages)
         drd.setAttribute("members", members)
+        drd.setAttribute("admin", admin)
 
         tem.appendChild(drd)
       }
