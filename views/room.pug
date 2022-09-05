@@ -1,18 +1,19 @@
 extends layout
 
 block content
-  div.p-2#main.h-screen.fixed(x-data="roompage")
-   a(href="/rooms")
-   div.border.p-2.flex.text.center.shadow-xl.h-[15vh]
+  div(class="p-2 main h-screen fixed"  id="main" x-data="roompage")
+   a(href="/rooms") rooms
+   div(class="border p-2 flex text center shadow-xl h-[15vh]")
     div(@click="toggle")
-     h1 = room.name
-    div.p-2.m-2.h-[75vh](x-if="main")
+     h1=room.name
+    div(class="p-2 m-2 h-[75vh]" x-if="main")
      rooms-msg(messages=room.messages)
-     input(type="hidden" value=user)
-    div.input
+     input(type="hidden" id="user" value=user )
+     input(type="hidden" id="room" value=room )
+    div.inpu
      input(name="message" id="message" placeholder="send new message ")
-     button.p-2.rounded.shadow#send(pys-onClick="send_message") send
-   div.m-2.p-4#des(x-else)
+     button(class="p-2 rounded shadow" id="send") send
+   div(x-else class="m-2 p-2")
     h1= room.name
     h3 Members
      each member in room.members
@@ -23,4 +24,33 @@ block content
      else
       div.p-2
        h1 = member.name
+  script.
+        
+        class ObjectId{
+        constructor(id){
+          this.id=id
+        }
+        value(){
+          return this.id
+        }
+        }
+        const aa = !{user};
+        const bb = !{room};
+        window.user = aa;
+        window.room= bb;
+        document.addEventListener("alpine:init", ()=> {
+            console.log("alpine ")
+           Alpine.data("roompage", ()=>({
+             desc: false,
+              main: true,
+             toggle () {
+             this.main = !this.main
+               }
+              }))
+
+         })
+  
   script(src="/javascripts/pages/room.js")
+  
+  
+  
