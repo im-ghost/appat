@@ -92,28 +92,39 @@ router.post('/register', (req: any, res: Response) => {
           email,
           password
         });
-        /*
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err;
-          newUser.password = hash;*/
-        newUser
-        .save()
-        .then(user => {
-          /* req?.flash(
+        if (newUser) {
+          bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(newUser.password, salt, (err, hash) => {
+              if (err) throw err;
+              newUser.password = hash;
+              newUser
+              .save()
+              .then(user => {
+                /* req?.flash(
             'success_msg',
             'You are now registered and can log in'
           );*/
-          res.redirect('/');
-        })
-        .catch(err => console.log(err));
+          
+          console.log(newUser)
+          
+                res.redirect('/');
+              })
+              .catch(err => console.log(err));
+            })
+          })
+        }
+        else{
+          console.log(newUser)
+        }
       }
     });
   }
 });
 
 // Login
-router.post('/login', (req: Request, res: Response, next) => {
+router.post('/login', (req: Request,
+  res: Response,
+  next) => {
   passport.authenticate('local',
     {
       successRedirect: '/',
@@ -125,7 +136,8 @@ router.post('/login', (req: Request, res: Response, next) => {
 });
 
 // Logout
-router.get('/logout', (req: any, res: Response) => {
+router.get('/logout', (req: any,
+  res: Response) => {
   req.logout();
   res.redirect('/users/login');
 });
