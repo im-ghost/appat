@@ -2,7 +2,7 @@ extends layout
 
 block content
  div(class="container rounded border")
-  form(action="/users/login")
+  form( method="POST" action="/users/login")
    
    div(class="border rounded-xl flex")
     input(name="email" class="w-full border-0 outline-0" value=email)
