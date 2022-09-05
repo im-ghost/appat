@@ -19,131 +19,32 @@ import {
 var User = require("../models/User");
 var Room = require("../models/Room");
 
-const sock = (req: any, room: ROOM)=> {
-  const socket = req.app.get("socket")
-  const io = req.app.get("io")
-  const user = req.user;
-
-  if (socket) {
-    socket.on("new user", (user)=> {
-      let droom = {
-        ...room
-      }
-      droom.members.push(user)
-      const newMembers = droom.members;
-      const newRoom = {
-        ...room, members: newMembers
-      }
-      Room.findByOneAndUpdate({
-        _id: room._id
-      }, newRoom, {
-        new: true,
-        runValidators: true
-      })
-      .exec((err, room)=> {
-        if (err) {
-          io.emit("error", err)
-        } else {
-          io.emit("message sent")
-        }
-      })
-    })
-    socket.on("send message", (msg)=> {
-      let droom = {
-        ...room
-      }
-      droom.messages.push(msg)
-      const newMessages = droom.messages;
-      const newRoom = {
-        ...room, messages: newMessages
-      }
-      Room.findByOneAndUpdate({
-        _id: room._id
-      },
-        newRoom,
-        {
-          new: true,
-          runValidators: true
-        })
-      .exec((err,
-        room)=> {
-        if (err) {
-          io.emit("error", err)
-        } else {
-          io.emit("message sent")
-        }
-      })
-
-    })
-  } else {
-    io.on("connection", (socket: any) => {
-
-      socket.on("new user", (user)=> {
-        let droom = {
-          ...room
-        }
-        droom.members.push(user)
-        const newMembers = droom.members;
-        const newRoom = {
-          ...room, members: newMembers
-        }
-        Room.findByOneAndUpdate({
-          _id: room._id
-        }, newRoom, {
-          new: true,
-          runValidators: true
-        })
-        .exec((err, room)=> {
-          if (err) {
-            io.emit("error", err)
-          } else {
-            io.emit("message sent")
-          }
-        })
-      })
-      socket.on("send message", (msg)=> {
-        let droom = {
-          ...room
-        }
-        droom.messages.push(msg)
-        const newMessages = droom.messages;
-        const newRoom = {
-          ...room, messages: newMessages
-        }
-        Room.findByOneAndUpdate({
-          _id: room._id
-        },
-          newRoom,
-          {
-            new: true,
-            runValidators: true
-          })
-        .exec((err,
-          room)=> {
-          if (err) {
-            io.emit("error", err)
-          } else {
-            io.emit("message sent")
-          }
-        })
-
-      })
-    })
-  }
-}
 const singleRoom = async(req: any, res: Response)=> {
   const roomId = req.params.id;
-  const room = await Room.findById({
-    id: roomId
-  });
-  if (room) {
-    res.render("room", {
-      room: room,
-      user: req.user
-    })
-    sock(req, room)
-  } else {
-    res.redirect("/rooms")
+  if (roomId !== "favicon.png") {
+    const room = await Room.findById(roomId);
+    const {
+      _id: id
+    } = req.user
+    const {
+      _id: rid
+    } = room;
+    const user = req.user
+     user._id = id.str;
+    const rroom = room;
+     rroom._id = rid.str;
+    if (room) {
+      console.log(rroom)
+      res.render("room", {
+        room: rroom,
+        user: user,
+        title: room.name
+      })
+    } else {
+      res.redirect("/rooms")
+    }} else {
+    console.log(req.params)
+    console.log(req.param("id"))
   }
 }
 const addRoom = (req: any, res: Response)=> {
@@ -151,26 +52,28 @@ const addRoom = (req: any, res: Response)=> {
     name
   } = req.body;
   const user = req.user;
-  let room = new Room({
+  const rroom = new Room({
     name: name,
     members: [user],
     admin: user,
     messages: []
   })
-  .exex((err: any, room: ROOM)=> {
-    if (err) {
-      console.log(err)
-      res.render("addRoom")
-    }
+
+  rroom.save()
+  .then((room)=> {
 
     console.log(":done")
     res.redirect(`/rooms/room/${room._id}`)
-  })
+  }).catch(err=>res.render("error", {
+      error: err
+    })
+  )
 }
 module.exports = {
   singleRoom,
   addRoom
 }
 export {
-  singleRoom, addRoom
+  singleRoom,
+  addRoom
 }
