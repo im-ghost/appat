@@ -8,14 +8,15 @@ module.exports = function(passport: any) {
       usernameField: 'email'
     }, (email: any, password: any, done: any) => {
       // Match user
-      const user: any = User.findOne({
+      User.findOne({
         email: email
-      })
+      }).then((user:any)=>{
       if (!user) {
         return done(null, false, {
           message: 'That email is not registered'
         });
       }
+      console.log(user)
 
       // Match password
       bcrypt.compare(password, user.password, (err, isMatch) => {
@@ -28,6 +29,7 @@ module.exports = function(passport: any) {
           });
         }
       });
+      })
     }))
 
   passport.serializeUser(function(user: any, done: any) {
