@@ -1,31 +1,27 @@
-const btn = document.querySelector("#send")
-/*
-class ObjectId {
-  constructor(id) {
-    this.id = id
-  }
-  value() {
-    return this.id
-  }
-}*/
-const {
-  value
-} = document.querySelector("#message")
-const {
+(()=>{
+  const btn = document.querySelector("#send")
+let {
   value: room
 } = document.querySelector("#room")
-const {
+let {
   value: user
 } = document.querySelector("#user")
+room = JSON.parse(room)
+user = JSON.parse(user)
 console.log(room)
 console.log(user)
 const send = (e)=> {
+  
+const {
+  value
+} = document.querySelector("#message")
   const msg = {
     text: value,
-    send: user,
+    sender: user,
     time: new Date()
   }
-  socket.emit("send message", msg, room)
+   room.messages.push(msg)
+  socket.emit("send message",room)
   console.log(e)
 }
 btn.addEventListener("click", send)
@@ -33,3 +29,4 @@ btn.addEventListener("click", send)
 
 
 //
+})();
