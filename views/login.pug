@@ -1,13 +1,15 @@
 extends layout
 
 block content
- div(class="container rounded border")
-  form( method="POST" action="/users/login")
-   
-   div(class="border rounded-xl flex")
-    input(name="email" class="w-full border-0 outline-0" value=email)
+ div(class="container rounded border flex h-[85vh] w-full m-0 text-2xl align-center justify-center items-center text-center ")
+  form( method="POST" action="/users/login" class="h-[30rem] w-3/4 shadow-lg rounded border-2 border-dotted")
+   h1(class="w-full text-center text-bold text-4xl") Login 
+   div(class="border rounded-xl h-16 flex m-14")
+    input(name="email" class="w-full border-0 h-full w-full outline-0" value=email)
     
-   div(class="border rounded-xl flex")
+   div(class="border rounded-xl h-16 flex m-14")
     input(name="password" value=password class="w-full border-0 outline-0")
-   button(type="submit") submit
-  a(href="/auth/google") google
+   button(type="submit" class="p-2 border-2 shadow border-groove my-4 hover:shadow-2xl block w-full text-center") submit
+  
+   button(class="p-2 border-2 border-groove my-4 hover:shadow-2xl w-full")
+     a(href="/auth/google") google
