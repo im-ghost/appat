@@ -1,53 +1,31 @@
 extends layout
 
 block content
-  div(class="p-2 main h-screen fixed"  id="main" x-data="roompage")
+  div(class="p-2 main h-screen fixed"  id="main")
    a(href="/rooms") rooms
-   div(class="border p-2 flex text center shadow-xl h-[15vh]")
-    div(@click="toggle")
+   div(class="border p-2 text-center shadow-xl h-[15vh] m-4"  x-data="{main: true,desc: false,toggle:()=>{this.main = !this.main;this.desc=!this.desc ;alert(this.desc) }}")
+     button(@click="toggle" class="border rounded-xl shadow") Toggle
      h1=room.name
-    div(class="p-2 m-2 h-[75vh]" x-if="main")
-     rooms-msg(messages=room.messages)
-     input(type="hidden" id="user" value=user )
-     input(type="hidden" id="room" value=room )
-    div.inpu
-     input(name="message" id="message" placeholder="send new message ")
-     button(class="p-2 rounded shadow" id="send") send
-   div(x-else class="m-2 p-2")
-    h1= room.name
-    h3 Members
-     each member in room.members
-      if room.admin === member 
-       div.p-2
-        h4 = member.name 
-        p = Admin 
-     else
-      div.p-2
-       h1 = member.name
+     div(class="p-2 m-2 h-[75vh]" x-show="main")
+       rooms-msg(messages=room.messages)
+       input(type="hidden" id="user" value=user )
+       input(type="hidden" id="room" value=room )
+       input(name="message" id="message" placeholder="send new message ")
+       button(class="p-2 rounded shadow" id="send") Send
+     div(class="m-2 p-2" x-show="desc" x-transition)
+       h1=room.name
+       h3 Members
+       each member in room.members
+         if room.admin.displayName === member.displayName 
+          div.p-2
+           h4=member.displayName
+           p  Admin
+         else
+            div.p-2
+              h1=member.displayName
   script.
-        
-        class ObjectId{
-        constructor(id){
-          this.id=id
-        }
-        value(){
-          return this.id
-        }
-        }
-        const aa = !{user};
-        const bb = !{room};
-        window.user = aa;
-        window.room= bb;
         document.addEventListener("alpine:init", ()=> {
-            console.log("alpine ")
-           Alpine.data("roompage", ()=>({
-             desc: false,
-              main: true,
-             toggle () {
-             this.main = !this.main
-               }
-              }))
-
+        
          })
   
   script(src="/javascripts/pages/room.js")
