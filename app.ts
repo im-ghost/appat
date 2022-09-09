@@ -80,7 +80,7 @@ app.set("io", io)
 
 io.on('connection', (socket: any) => {
   console.log('a user connected');
-  require("./controllers/socket")
+  require("./controllers/socket")(socket, io)
 });
 
 // Sessions
