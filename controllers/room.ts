@@ -23,21 +23,10 @@ const singleRoom = async(req: any, res: Response)=> {
   const roomId = req.params.id;
   if (roomId !== "favicon.png") {
     const room = await Room.findById(roomId);
-    const {
-      _id: id
-    } = req.user
-    const {
-      _id: rid
-    } = room;
-    const user = req.user
-     user._id = id.str;
-    const rroom = room;
-     rroom._id = rid.str;
     if (room) {
-      console.log(rroom)
       res.render("room", {
-        room: rroom,
-        user: user,
+        room: room,
+        user: req.user,
         title: room.name
       })
     } else {
