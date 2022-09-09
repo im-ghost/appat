@@ -82,7 +82,6 @@ router.post('/register', (req: any, res: Response) => {
           msg: 'Email already exists'
         });
         console.log("errors")
-        console.log(user)
         res.redirect("/")
       } else {
         const newUser = new User({
@@ -104,16 +103,15 @@ router.post('/register', (req: any, res: Response) => {
             'success_msg',
             'You are now registered and can log in'
           );*/
-          
-          console.log(newUser)
-          
+
+                console.log(newUser)
+
                 res.redirect('/');
               })
               .catch(err => console.log(err));
             })
           })
-        }
-        else{
+        } else {
           console.log(newUser)
         }
       }
@@ -127,7 +125,7 @@ router.post('/login', (req: Request,
   next) => {
   passport.authenticate('local',
     {
-      successRedirect: '/',
+      successRedirect: "/",
       failureRedirect: '/users/login',
       failureFlash: true
     })(req,
