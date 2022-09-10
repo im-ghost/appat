@@ -20,6 +20,6 @@ module.exports = (socket, io)=> {
       returnOriginal: false,
       new: true
     });
-    console.log(doc)
+   
   })
 }
