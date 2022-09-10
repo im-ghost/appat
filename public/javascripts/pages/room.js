@@ -27,6 +27,10 @@
     df.setAttribute("messages", JSON.stringify(all))
     df.e = "jss"
     console.log(df)
+    socket.on("new msgs", (msgs)=> {
+
+      df.setAttribute("messages", JSON.stringify(msgs))
+    })
   }
   btn.addEventListener("click", send)
 
