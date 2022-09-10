@@ -2,7 +2,7 @@ const {
   Router
 } = require("express")
 var path = require("path");
-
+var Room = require("../models/Room")
 const {
   ensureAuth,
   ensureGuest
@@ -23,7 +23,19 @@ import {
 } from "../controllers/room"
 const router = Router();
 
-router.get("/",ensureAuth, (req: Request, res: Response)=>res.render("rooms"))
+router.get("/",ensureAuth, async (req: Request, res: Response)=>
+{
+  let rooms = await Room.find({})
+  if(rooms){
+  res.render("rooms",{
+    title:"Rooms",
+    rooms:rooms
+  })
+}
+ else{
+   console.log(rooms)
+ }
+})
 router.get("/favicon.png", (req: Request, res: Response)=>res.sendFile(path.join(__dirname, "/images/favecon.png")))
 
 router.get("/room/favicon.png", (req: Request, res: Response)=>res.sendFile(path.join(__dirname, "/images/favecon.png")))
