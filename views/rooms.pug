@@ -2,7 +2,7 @@ extends layout
 
 block content
  div(class="border" x-data)
-   rooms-list
+   rooms-list(rooms=rooms)
    button(id="addRoom" @click = "alert('dd')" class="rouded fixed bottom-10 right-10 border-2 shadow") New room
-
+ script(src="/javascripts/pages/rooms.js")
 
