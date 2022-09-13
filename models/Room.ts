@@ -13,6 +13,9 @@ const userModel:Schema = new Schema({
   },
   admin:{
     type: Object
+  },
+  isDM:{
+    type: Boolean 
   }
 })
 
