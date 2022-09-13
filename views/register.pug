@@ -1,30 +1,29 @@
 extends layout
 
 block content
- div(class="container rounded border flex h-[85vh] w-[100vw] align-center justify-center items-center text-center ")
-  form( method="POST" action="/users/register" class="h-[33vh] w-[30vw] shadow-lg rounded border-2 border-dotted")
+ div(class="container rounded border-4 border-dotted flex h-[100vh] w-screen w-[120vw] m-0 text-4xl align-center justify-center items-center text-center ")
+  form( method="POST" action="/users/register" class="h-[64rem] w-3/4 shadow-lg rounded border-2 border-dotted")
    h1(class="w-full text-center text-bold") Register 
   
-   div(class="border rounded-xl flex h-[8vh]")
-    input(name="firstName" value=firstName class="w-full border-0 outline-0" placeholder="Your first name" type="text")
+   div(class="border rounded-xl h-16 flex m-14")
+    input(name="firstName" value=firstName class="w-full rounded-3xl p-2 outline-0 " placeholder="Your first name" type="text")
     
-   div(class="border rounded-xl  h-[8vh]")
-    input(name="lastName" value=lastName placeholder="Your lastName" class="w-full border-0 outline-0"  type="text")
+   div(class="border rounded-xl h-16 flex m-14")
+     input(name="lastName" value=lastName placeholder="Your lastName" class="w-full rounded-3xl p-2 outline-0 "  type="text")
     
-   div(class="border rounded-xl flex h-[8vh]")
-    input(name="displayName" value=displayName class="w-full border-0 outline-0" type="text" placeholder="Your displayName")
+   div(class="border rounded-xl h-16 flex m-14")
+    input(name="displayName" value=displayName class="w-full rounded-3xl p-2 outline-0 " type="text" placeholder="Your displayName")
     
-   div(class="border rounded-xl flex h-[8vh]")
-    input(name="email" value=email class="w-full border-0 outline-0" type="email" placeholder="email address")
+   div(class="border rounded-xl h-16 flex m-14")
+    input(name="email" value=email class="w-full rounded-3xl p-2 outline-0 " type="email" placeholder="email address")
     
-   div(class="border rounded-xl flex h-[8vh]")
-    input(name="password" value=password class="w-full border-0 outline-0" type="password" placeholder="password")
+   div(class="border rounded-xl h-16 flex m-14")
+    input(name="password" value=password class="w-full rounded-3xl p-2 outline-0 " type="password" placeholder="password")
     
-   div(class="border h-[8vh] rounded-xl flex")
-    input(name="password2" type="password" value=password2 class="w-full border-0 outline-0 h-full" placeholder="confirm password")
+   div(class="border rounded-xl h-16 flex m-14")
+    input(name="password2" type="password" value=password2 class="w-full rounded-3xl p-2 outline-0 " placeholder="confirm password")
     
-   
-   button(type="submit" class="p-2 border-2 shadow border-groove m-4 hover:shadow-2xl") submit
-  
-   button( class="p-2 border-2 shadow border-groove m-4 hover:shadow-2xl w-full")
-    a(href="/auth/google") google
+   button(type="submit" class="p-2 border-2 shadow-lg border-groove my-4 hover:shadow-2xl rounded-2xl block w-full bg-gradient-to-r dark:from-indigo-500 dark:via-purple-500 dark:to-pink-500 from-sky-200 via-ryan-400 to-blue-400 text-center") submit
+   hr(class="h-12" )
+   button(class="p-2 border-2 border-groove rounded-2xl my-4 hover:shadow-2xl shadow-lg bg-gradient-to-r w-full dark:from-indigo-500 dark:via-purple-500 dark:to-pink-500 from-sky-400 via-ryan-400 to-blue-200")
+     a(href="/auth/google") Google
