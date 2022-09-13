@@ -21,19 +21,49 @@ var Room = require("../models/Room");
 
 const singleRoom = async(req: any, res: Response)=> {
   const roomId = req.params.id;
-  if (roomId !== "favicon.png") {
-    const room = await Room.findById(roomId);
-    if (room) {
-      res.render("room", {
-        room: room,
-        user: req.user,
-        title: room.name
-      })
-    } else {
-      res.redirect("/rooms")
-    }} else {
-    console.log(req.params)
-    console.log(req.param("id"))
+  const room = await Room.findById(roomId);
+  const user = req.user
+  if (room) {
+    let members = room.members
+    var isthere = false;
+    await members.map((member)=> {
+      if (member.name === user.name) {
+        isthere = true
+      }
+    })
+    if (!isthere) {
+
+      let newRooms = user.room.push(room)
+      const update = {
+        rooms: newRooms
+      }
+      const filter = {
+        _id: user._id
+      }
+      let doc = await User.findOneAndUpdate(filter, update, {
+        returnOriginal: false,
+        new: true
+      });
+      
+      let newMembers =room.members.push(room)
+      const update2 = {
+        members: newMembers
+      }
+      const filter2 = {
+        _id: room._id
+      }
+      let doc2 = await Room.findOneAndUpdate(filter2, update2, {
+        returnOriginal: false,
+        new: true
+      });
+    }
+    res.render("room", {
+      room: room,
+      user: req.user,
+      title: room.name
+    })
+  } else {
+    res.redirect("/rooms")
   }
 }
 const addRoom = (req: any, res: Response)=> {
@@ -50,7 +80,17 @@ const addRoom = (req: any, res: Response)=> {
 
   rroom.save()
   .then((room)=> {
-
+    let newRooms = user.room.push(room)
+    const update = {
+      rooms: newRooms
+    }
+    const filter = {
+      _id: user._id
+    }
+    let doc = await User.findOneAndUpdate(filter, update, {
+      returnOriginal: false,
+      new: true
+    });
     console.log(":done")
     res.redirect(`/rooms/room/${room._id}`)
   }).catch(err=>res.render("error", {
