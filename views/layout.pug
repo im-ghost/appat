@@ -3,6 +3,8 @@ html(lang="en")
   head
     title= title
     include ./includes/header.pug
-  body(class="")
-    include ./includes/navbar
+  body(class="container rounded  flex h-[100vh]  flex-col align-center justify-center items-center text-center ")
+   button(id="theme") Toggle Theme
+   div(class="h-[90vh] overflow-contain")
     block content
+   include ./includes/foot.pug
