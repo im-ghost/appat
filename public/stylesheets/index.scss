@@ -6,7 +6,11 @@ $text-colors:(
   "cool":#aca
 );
 
-
+input {
+  &::placeholder {
+    margin:2px 4px;
+  }
+}
 
 .input {
   border:3px solid black;
