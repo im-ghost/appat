@@ -19,7 +19,7 @@ const {
 } = require('../Middlewares/auth');
 
 // Login Page
-router.get('/login', ensureGuest, (req: Request, res: Response) => res.render('login', {
+router.get('/login', ensureGuest,(req: Request, res: Response) => res.render('login', {
   title: "login",
   email: "",
   password: ""
