@@ -66,7 +66,7 @@ const singleRoom = async(req: any, res: Response)=> {
     res.redirect("/rooms")
   }
 }
-const addRoom = (req: any, res: Response)=> {
+const addRoom =async (req: any, res: Response)=> {
   const {
     name
   } = req.body;
@@ -79,7 +79,7 @@ const addRoom = (req: any, res: Response)=> {
   })
 
   rroom.save()
-  .then((room)=> {
+  .then(async (room)=> {
     let newRooms = user.room.push(room)
     const update = {
       rooms: newRooms
