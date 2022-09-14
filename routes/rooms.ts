@@ -36,9 +36,6 @@ router.get("/",ensureAuth, async (req: Request, res: Response)=>
    console.log(rooms)
  }
 })
-router.get("/favicon.png", (req: Request, res: Response)=>res.sendFile(path.join(__dirname, "/images/favecon.png")))
-
-router.get("/room/favicon.png", (req: Request, res: Response)=>res.sendFile(path.join(__dirname, "/images/favecon.png")))
 router.get("/room/:id",ensureAuth, singleRoom)
 router.post("/addRoom",ensureAuth, addRoom)
 router.get("/addRoom",ensureAuth, (req: Request, res: Response)=>res.render("addRoom"))
