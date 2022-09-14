@@ -37,6 +37,8 @@ const usersRouter = require('./routes/users');
 const roomsRouter = require('./routes/rooms');
 const chatsRouter = require('./routes/chats');
 const authRouter = require('./routes/auth');
+const memoriesRouter = require('./routes/memories');
+const friendsRouter = require('./routes/friends');
 
 const app: Application = express();
 
@@ -106,9 +108,11 @@ app.use(function (req: any, res: Response, next: NextFunction) {
 })
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/profile', usersRouter);
 app.use('/chats', chatsRouter);
+app.use('/friends', friendsRouter);
 app.use('/rooms', roomsRouter);
+app.use('/memories', memoriesRouter);
 app.use('/auth', authRouter);
 /**/
 //
