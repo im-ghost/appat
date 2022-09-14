@@ -1,6 +1,7 @@
 //
 //
 import ROOMS from "./ROOM"
+import MEMORIES from "./MEMORIES"
 export interface USER {
   _id: any,
   displayName: string,
@@ -10,6 +11,8 @@ export interface USER {
   rooms: ROOMS,
   email: string,
   googleId?:any,
+  memories:any[],
+  friends:any[]
 }
 
 export type USERS = USER[]
