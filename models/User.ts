@@ -32,7 +32,11 @@ const userModel: Schema = new Schema({
   },
   password: {
     type: String, required: true
-  }
+  },
+  memories:{
+    type:Array
+  },
+  friends:{type:Array}
 })
 
 module.exports = model < USER & Document > ("User", userModel)
