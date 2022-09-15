@@ -10,6 +10,12 @@ const userModel = new mongoose_1.Schema({
     },
     messages: {
         type: Array
+    },
+    admin: {
+        type: Object
+    },
+    isDM: {
+        type: Boolean
     }
 });
 module.exports = (0, mongoose_1.model)("Room", userModel);
