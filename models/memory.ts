@@ -15,6 +15,9 @@ const memoryModel: Schema = new Schema({
   body: {
     type: String
   },
+  date: {
+    type: Date
+  },
   user: {
     type: String,
     required: true
