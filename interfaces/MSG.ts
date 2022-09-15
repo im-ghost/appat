@@ -1,7 +1,7 @@
 //
 //
-import ROOM from "./ROOM"
-import USER from "./USER"
+import { ROOM } from "./ROOM"
+import { USER } from "./USER"
 export interface MSG {
   text: string,
   sender: USER,
