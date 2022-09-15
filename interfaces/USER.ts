@@ -1,7 +1,7 @@
 //
 //
-import ROOMS from "./ROOM"
-import MEMORIES from "./MEMORIES"
+import { ROOMS } from "./ROOM"
+import { MEMORIES } from "./MEMORY"
 export interface USER {
   _id: any,
   displayName: string,
