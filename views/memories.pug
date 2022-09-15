@@ -1,0 +1,11 @@
+extends layout
+
+block content
+ div(class="")
+  input(id="user" value=user)
+  input(id="memories" value=memories)
+  button(id="addm" @click = "alert('dd')" class="rouded fixed bottom-10 right-10 border-2 shadow") New memory
+  div(class="p-2 m-2 shadow ")
+   each memory in memories
+    memorylist-item(memory=memory)
+  script (src=":/javascripts/pages/memories.js")
