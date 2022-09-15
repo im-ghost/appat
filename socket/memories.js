@@ -16,7 +16,7 @@ module.exports = (socket, io)=> {
       let memory = await new Memory(body)
       if(memory){
       //io.emit("newMemory",memory)
-      io.emot("success")
+      io.emit("success")
       }
     }
 
