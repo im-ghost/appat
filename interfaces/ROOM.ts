@@ -1,7 +1,7 @@
 //
 //
-import USERS from "./USER"
-import MSGS from "./MSG"
+import {USERS, USER }from "./USER"
+import { MSGS } from "./MSG"
 export interface ROOM {
   _id: any,
   name: string,
