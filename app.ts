@@ -108,7 +108,7 @@ app.use(function (req: any, res: Response, next: NextFunction) {
 })
 
 app.use('/', indexRouter);
-app.use('/profile', usersRouter);
+app.use('/users', usersRouter);
 app.use('/chats', chatsRouter);/*
 app.use('/friends', friendsRouter);*/
 app.use('/rooms', roomsRouter);
