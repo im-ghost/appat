@@ -1,7 +1,7 @@
 //
 var Room = require("../models/Room");
 var User = require("../models/User");
-var Memories = require("../models/memories");
+var Memory = require("../models/memory");
 
 
 
@@ -14,9 +14,9 @@ module.exports = (socket, io)=> {
     const user = await User.findById(userId);
     if (user) {
       let memory = await new Memory(body)
-      if(memory){
-      //io.emit("newMemory",memory)
-      io.emit("success")
+      if (memory) {
+        //io.emit("newMemory",memory)
+        io.emit("success")
       }
     }
 
