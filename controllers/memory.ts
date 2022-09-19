@@ -10,6 +10,7 @@ import {
   MEMORIES
 } from "../interfaces/MEMORY"
 const Memory = require("../models/memory")
+const User = require("../models/User")
 const allMemories = async (req: any, res: Response)=>
 {
   const user = req.user
@@ -28,21 +29,28 @@ const allMemories = async (req: any, res: Response)=>
       allMemories.push(memory)
     })
   })
-
-  const memories: MEMORIES = [...allMemories, user.memories]
-  await memories.map(async(memory)=> {
+  let memories: MEMORIES = [...allMemories, ...user.memories]
+  const memoriesWithObj: Array < any > = await memories.map(async(memory)=> {
     let userId = memory.user;
     const user = await User.findById(userId)
     if (user) {
       memory.userObj = user
-    }
+    }/*
+    memoriesWithObj.push(memory)*/
+    return memory
+
   })
+Promise.all(memoriesWithObj)
+.then((memoriesWithObj)=>{
+  console.log(memoriesWithObj)
+
   res.render("memories",
     {
       title: "Memories",
       user: req.user,
-      memories: memories
+      memories: memoriesWithObj
     })
+})
 }
 
 const addMemory = async (req: any, res: Response)=> {
@@ -52,32 +60,34 @@ const addMemory = async (req: any, res: Response)=> {
 
   } = req.body;
   const user = req.user;
-  const memory = new Memory ({
+  const memory = new Memory({
     title: title,
-    user: user,
+    user: user._id,
     body: body,
     date: new Date
   })
 
-  memory.save()
-  .then(async (memory)=> {
-    let newMemories = user.memories.push(memory)
-    const update = {
-      memories: newMemories
-    }
-    const filter = {
-      _id: user._id
-    }
-    let doc = await User.findOneAndUpdate(filter, update, {
-      returnOriginal: false,
-      new: true
-    });
-    console.log(":done")
-    res.redirect(`/memories/memory/${memory._id}`)
-  }).catch(err=>res.render("error", {
-      error: err
+  if (memory) {
+    memory.save()
+    .then(async (memory)=> {
+
+      const newMemories = [...user.memories, memory]
+      const update = {
+        memories: newMemories
+      }
+      const filter = {
+        _id: user._id
+      }
+      let doc = await User.findOneAndUpdate(filter, update, {
+        returnOriginal: false,
+        new: true
+      });
+      console.log(doc)
+      console.log(":done")
+      res.redirect(`/memories/memory/${memory._id}`)
     })
-  )
+  }
+
 }
 module.exports = {
   allMemories,
