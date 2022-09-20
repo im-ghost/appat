@@ -23,7 +23,7 @@ const template = document.createElement("template")
 template.innerHTML = `
 
 <link rel="stylesheet" href="/stylesheets/output.css"/>
-<div x-data="memorylist" class="rounded-3xl shadow-2xl w-full border-2 p-4 m-4 text-4xl">
+<div x-data="memorylist" class="rounded-3xl shadow-2xl w-screen border-2 p-4 m-4 text-4xl">
 <header class="flex">
 <img src="" class="rounded-[50%] h-32 w-32"/>
 <div class="">
@@ -33,7 +33,7 @@ template.innerHTML = `
 </div>
 </header>
 <main>
-<p x-text="body"></p>
+<p x-text="body" class="h-64"></p>
 </main>
 <div class="flex justify-evenly">
 <span id="like" class="rounded-lg shadow p-4 flex align-center text-center justify-center w-1/4">👍</span>
