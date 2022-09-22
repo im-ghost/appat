@@ -2,6 +2,7 @@
 //
 import { ROOMS } from "./ROOM"
 import { MEMORIES } from "./MEMORY"
+import { NOTIFICATION } from "./NOTIFICATION"
 export interface USER {
   _id: any,
   displayName: string,
@@ -12,7 +13,9 @@ export interface USER {
   email: string,
   googleId?:any,
   memories:any[],
-  friends:any[]
+  friends:any[],
+  notifications:Array<NOTIFICATION>,
+  isActive:true | false
 }
 
 export type USERS = USER[]
