@@ -20,6 +20,11 @@ const bcrypt = require('bcryptjs');
           firstName: profile.name.givenName,
           lastName: profile.name.familyName,
           image: profile.photos[0].value,
+          friends :[],
+          memories:[],
+          rooms:[],
+          notifications:[],
+          isActive:false,
         }
 
         try {
