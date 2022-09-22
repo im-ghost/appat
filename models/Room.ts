@@ -12,7 +12,7 @@ const userModel:Schema = new Schema({
     type:Array
   },
   admin:{
-    type: Object
+    type: String
   },
   isDM:{
     type: Boolean 
