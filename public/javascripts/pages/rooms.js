@@ -57,7 +57,7 @@ class Rooms_ extends HTMLElement {
 */
     document.querySelector("#addRoom").addEventListener("click", (e)=> {
       console.log(e)
-      window.location.replace("rooms/addRoom")
+      window.location.replace("chats/add")
     })
 
   }
