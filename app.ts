@@ -107,12 +107,14 @@ app.use(function (req: any, res: Response, next: NextFunction) {
   next()
 })
 
-app.use('/', indexRouter);
+app.use('/', memoriesRouter);
+app.use('/profile', memoriesRouter);
+app.use('/notifications', memoriesRouter);
 app.use('/users', usersRouter);
-app.use('/chats', chatsRouter);/*
+app.use('/chats', chatsRouter); /*
 app.use('/friends', friendsRouter);*/
-app.use('/rooms', roomsRouter);
-app.use('/memories', memoriesRouter);
+app.use('/rooms', roomsRouter); /*
+app.use('/memories', memoriesRouter);*/
 app.use('/auth', authRouter);
 /**/
 //
