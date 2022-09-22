@@ -22,9 +22,11 @@ const memoryModel: Schema = new Schema({
     type: String,
     required: true
   },
-  reactions: {
-    type: Array,
-    required: true
+  likes: {
+    type: Array
+  }
+  comments: {
+    type: Array
   }
 })
 
