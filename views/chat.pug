@@ -1,4 +1,34 @@
 extends layout
 
 block content
-  msgs-list
+  div(class="p-2 main overflow-scroll"  id="main")
+   div(class="border p-2 text-center shadow-xl h-[15vh] m-4"  x-data="{main: true,desc: false,toggle:()=>{this.main = !this.main;this.desc=!this.desc ;alert(this.desc) }}")
+     button(@click="toggle" class="border rounded-xl shadow") Toggle
+     h1=room.name
+     div(class="p-2 m-2 h-[75vh]" x-show="main")
+       room-msgs(messages=room.messages id="room-msgs")
+       input(type="hidden" id="user" value=user )
+       input(type="hidden" id="room" value=room )
+       input(name="message" id="message" placeholder="send new message ")
+       button(class="p-2 rounded shadow" id="send") Send
+    if !isDm
+     div(class="m-2 p-2" x-show="desc" x-transition)
+       h1=room.name
+       h3 Members
+       each member in room.members
+         if room.admin.displayName === member.displayName 
+          div.p-2
+           h4=member.displayName
+           p  Admin
+         else
+            div.p-2
+              h1=member.displayName
+  script.
+        document.addEventListener("alpine:init", ()=> {
+        
+         })
+  
+  script(src="/javascripts/pages/room.js")
+  
+  
+  

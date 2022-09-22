@@ -1,4 +1,7 @@
 extends layout
 
 block content
-  msgs-list
+ div(class="border" x-data)
+   rooms-list(rooms=chats)
+   button(id="addRoom" @click = "alert('dd')" class="rouded fixed bottom-10 right-10 border-2 shadow") New Chats
+ script(src="/javascripts/pages/rooms.js")
