@@ -21,7 +21,7 @@ const {
 router.get("/", ensureAuth, allMemories)
 
 router.post("/addMemory", ensureAuth, addMemory)
-router.get("/addMemory", ensureAuth, (req: Request, res: Response)=>res.render("addMemory"))
+router.get("/add", ensureAuth, (req: Request, res: Response)=>res.render("addMemory"))
 router.get("/memory/:id", ensureAuth, async (req: any, res: Response)=> {
 
   const memoryId = req.params.id;
