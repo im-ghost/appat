@@ -89,7 +89,12 @@ router.post('/register', (req: any, res: Response) => {
           lastName,
           displayName,
           email,
-          password
+          password,
+          friends:[],
+          memories:[],
+        rooms:[],
+          notifications:[],
+          isActive:false,
         });
         if (newUser) {
           bcrypt.genSalt(10, (err, salt) => {
